@@ -51,59 +51,50 @@ export default function LoginScreen() {
         } finally {
             setIsLoading(false);
         }
-    };
-
-    const handleRegister = () => {
+    }; const handleRegister = () => {
         // Navigate to register screen
         router.push('/register' as any);
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>MealShare</Text>
-            <Text style={styles.subtitle}>Sign In</Text>
-            {error ? <Text style={styles.errorText}>{error}</Text> : null}
+            <View style={styles.card}>
+                <Text style={styles.title}>MealShare</Text>
 
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Username</Text>
+                {error ? <Text style={styles.errorText}>{error}</Text> : null}
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter your username"
+                    placeholder="username"
                     value={username}
                     onChangeText={setUsername}
                     autoCapitalize="none"
+                    placeholderTextColor="#888"
                 />
-            </View>
 
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Password</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter your password"
+                    placeholder="password"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry
+                    placeholderTextColor="#888"
                 />
-            </View>
 
-            <TouchableOpacity
-                style={styles.loginButton}
-                onPress={handleLogin}
-                disabled={isLoading}
-            >
-                {isLoading ? (
-                    <ActivityIndicator color="#fff" size="small" />
-                ) : (
-                    <Text style={styles.loginButtonText}>Sign In</Text>
-                )}
-            </TouchableOpacity>
-
-            <View style={styles.registerContainer}>
-                <Text style={styles.registerText}>Don't have an account? </Text>
-                <TouchableOpacity onPress={handleRegister}>
-                    <Text style={styles.registerLink}>Sign Up</Text>
+                <TouchableOpacity
+                    style={styles.loginButton}
+                    onPress={handleLogin}
+                    disabled={isLoading}
+                >
+                    {isLoading ? (
+                        <ActivityIndicator color="#000" size="small" />
+                    ) : (
+                        <Text style={styles.loginButtonText}>Login</Text>
+                    )}
                 </TouchableOpacity>
             </View>
+            <TouchableOpacity onPress={handleRegister} style={styles.registerContainer}>
+                <Text style={styles.registerText}>Don't have an account? Register now!</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -112,20 +103,31 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#fff',
+        backgroundColor: '#48426D',  // Dark purple background as shown in image
         justifyContent: 'center',
+        alignItems: 'center',
+    }, card: {
+        backgroundColor: '#312C51',  // Same as background for seamless look
+        borderWidth: 1,
+        borderColor: '#FAD1A1',
+        borderRadius: 12,
+        padding: 24,
+        paddingBottom: 30,
+        width: '90%',
+        maxWidth: 300,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
     },
     title: {
-        fontSize: 32,
-        fontWeight: 'bold',
-        color: '#FF6B6B',
-        marginBottom: 8,
-        textAlign: 'center',
-    },
-    subtitle: {
+        fontFamily: 'Ubuntu-Bold',
         fontSize: 24,
-        color: '#333',
-        marginBottom: 24,
+        fontWeight: 'bold',
+        color: '#fff',
+        marginBottom: 16,
         textAlign: 'center',
     },
     errorText: {
@@ -133,44 +135,37 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         textAlign: 'center',
     },
-    inputContainer: {
-        marginBottom: 16,
-    },
-    label: {
-        fontSize: 16,
-        color: '#333',
-        marginBottom: 8,
-    },
     input: {
-        backgroundColor: '#F5F5F5',
-        borderRadius: 8,
-        padding: 16,
+        backgroundColor: '#E8E8E8',
+        borderRadius: 20,
+        padding: 12,
+        paddingLeft: 16,
         fontSize: 16,
+        width: '100%',
+        marginVertical: 8,
     },
     loginButton: {
-        backgroundColor: '#FF6B6B',
-        borderRadius: 8,
-        padding: 16,
+        backgroundColor: '#E6B36D',  // Golden/amber button color
+        borderRadius: 20,
+        padding: 12,
         alignItems: 'center',
         marginTop: 16,
+        width: '100%',
     },
     loginButtonText: {
-        color: '#fff',
-        fontSize: 18,
+        color: '#000',
+        fontSize: 16,
         fontWeight: 'bold',
     },
     registerContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 24,
+        marginTop: 16,
+        padding: 8,
     },
     registerText: {
-        color: '#666',
-        fontSize: 16,
-    },
-    registerLink: {
-        color: '#FF6B6B',
-        fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu',
+        color: '#fff',
+        fontSize: 14,
+        textAlign: 'center',
+        textDecorationLine: 'underline',
     },
 });

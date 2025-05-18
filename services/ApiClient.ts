@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // Create an axios instance with default config
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api', // Changed from https to http
+  baseURL: 'http://3.69.25.184:8080/api', // Changed from https to http
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

@@ -7,7 +7,6 @@ import {
     ActivityIndicator,
     KeyboardAvoidingView,
     Platform,
-    ScrollView,
     StyleSheet,
     Text,
     TextInput,
@@ -81,66 +80,53 @@ export default function RegisterScreen() {
     const handleLogin = () => {
         // Navigate to login screen
         router.push('/login');
-    };
-
-    return (
+    }; return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}
         >
-            <ScrollView
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={false}
-            >
+            <View style={styles.card}>
                 <Text style={styles.title}>MealShare</Text>
                 <Text style={styles.subtitle}>Create Account</Text>
 
                 {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Username</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Enter a username"
-                        value={username}
-                        onChangeText={setUsername}
-                        autoCapitalize="none"
-                    />
-                </View>
+                <TextInput
+                    style={styles.input}
+                    placeholder="username"
+                    value={username}
+                    onChangeText={setUsername}
+                    autoCapitalize="none"
+                    placeholderTextColor="#888"
+                />
 
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Email</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Enter your email"
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                    />
-                </View>
+                <TextInput
+                    style={styles.input}
+                    placeholder="email"
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    placeholderTextColor="#888"
+                />
 
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Password</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Create a password"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry
-                    />
-                </View>
+                <TextInput
+                    style={styles.input}
+                    placeholder="password"
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
+                    placeholderTextColor="#888"
+                />
 
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Confirm Password</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Confirm your password"
-                        value={confirmPassword}
-                        onChangeText={setConfirmPassword}
-                        secureTextEntry
-                    />
-                </View>
+                <TextInput
+                    style={styles.input}
+                    placeholder="confirm password"
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                    secureTextEntry
+                    placeholderTextColor="#888"
+                />
 
                 <TouchableOpacity
                     style={styles.registerButton}
@@ -148,19 +134,16 @@ export default function RegisterScreen() {
                     disabled={isLoading}
                 >
                     {isLoading ? (
-                        <ActivityIndicator color="#fff" size="small" />
+                        <ActivityIndicator color="#000" size="small" />
                     ) : (
                         <Text style={styles.registerButtonText}>Sign Up</Text>
                     )}
                 </TouchableOpacity>
+            </View>
 
-                <View style={styles.loginContainer}>
-                    <Text style={styles.loginText}>Already have an account? </Text>
-                    <TouchableOpacity onPress={handleLogin}>
-                        <Text style={styles.loginLink}>Sign In</Text>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
+            <TouchableOpacity onPress={handleLogin} style={styles.loginContainer}>
+                <Text style={styles.loginText}>Already have an account? Sign In</Text>
+            </TouchableOpacity>
         </KeyboardAvoidingView>
     );
 }
@@ -168,69 +151,80 @@ export default function RegisterScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-    },
-    scrollContent: {
-        flexGrow: 1,
         padding: 20,
+        backgroundColor: '#48426D',  // Dark purple background
         justifyContent: 'center',
+        alignItems: 'center',
+    },
+    card: {
+        backgroundColor: '#312C51',  // Dark card background
+        borderWidth: 1,
+        borderColor: '#FAD1A1',
+        borderRadius: 12,
+        padding: 24,
+        paddingBottom: 30,
+        width: '90%',
+        maxWidth: 300,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
     },
     title: {
-        fontSize: 32,
+        fontFamily: 'Ubuntu-Bold',
+        fontSize: 24,
         fontWeight: 'bold',
-        color: '#FF6B6B',
+        color: '#fff',
         marginBottom: 8,
         textAlign: 'center',
     },
     subtitle: {
-        fontSize: 24,
-        color: '#333',
-        marginBottom: 24,
+        fontFamily: 'Ubuntu',
+        fontSize: 18,
+        color: '#fff',
+        marginBottom: 16,
         textAlign: 'center',
     },
     errorText: {
+        fontFamily: 'Ubuntu',
         color: '#FF3B30',
         marginBottom: 16,
         textAlign: 'center',
     },
-    inputContainer: {
-        marginBottom: 16,
-    },
-    label: {
-        fontSize: 16,
-        color: '#333',
-        marginBottom: 8,
-    },
     input: {
-        backgroundColor: '#F5F5F5',
-        borderRadius: 8,
-        padding: 16,
+        backgroundColor: '#E8E8E8',
+        borderRadius: 20,
+        padding: 12,
+        paddingLeft: 16,
         fontSize: 16,
+        width: '100%',
+        marginVertical: 8,
+        fontFamily: 'Ubuntu',
     },
     registerButton: {
-        backgroundColor: '#FF6B6B',
-        borderRadius: 8,
-        padding: 16,
+        backgroundColor: '#E6B36D',  // Amber button color
+        borderRadius: 20,
+        padding: 12,
         alignItems: 'center',
         marginTop: 16,
+        width: '100%',
     },
     registerButtonText: {
-        color: '#fff',
-        fontSize: 18,
+        color: '#000',
+        fontSize: 16,
         fontWeight: 'bold',
     },
     loginContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 24,
+        marginTop: 16,
+        padding: 8,
     },
     loginText: {
-        color: '#666',
-        fontSize: 16,
-    },
-    loginLink: {
-        color: '#FF6B6B',
-        fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu',
+        color: '#fff',
+        fontSize: 14,
+        textAlign: 'center',
+        textDecorationLine: 'underline',
     },
 });
